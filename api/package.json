@@ -1,0 +1,50 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "API para o projeto Amar Açaí",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "pretty": "prettier . --write",
+    "pretty:check": "prettier . --check"
+  },
+  "keywords": [],
+  "author": {
+    "email": "marcosjbotene@gmail.com",
+    "name": "Marcos Botene",
+    "url": "https://github.com/MarcosJBM"
+  },
+  "license": "ISC",
+  "packageManager": "pnpm@10.7.1",
+  "dependencies": {
+    "@prisma/adapter-pg": "7.0.1",
+    "@prisma/client": "7.0.1",
+    "dotenv": "17.2.3",
+    "express": "5.1.0",
+    "pg": "8.16.3",
+    "zod": "4.1.13"
+  },
+  "devDependencies": {
+    "@eslint/config-array": "0.23.0",
+    "@eslint/js": "9.39.1",
+    "@types/express": "5.0.5",
+    "@types/node": "24.10.1",
+    "@types/pg": "8.15.6",
+    "eslint": "9.39.1",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-prettier": "5.5.4",
+    "eslint-plugin-simple-import-sort": "12.1.1",
+    "globals": "16.5.0",
+    "prettier": "3.7.3",
+    "prisma": "7.0.1",
+    "tsup": "8.5.1",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.48.0"
+  }
+}
