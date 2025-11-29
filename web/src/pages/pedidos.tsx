@@ -20,7 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { getMockPedidos, type Pedido } from '@/lib/mock-data';
+import { getMockPedidos, type Pedido } from '@/libs/mock-data';
 
 const ITEMS_PER_PAGE = 10;
 
