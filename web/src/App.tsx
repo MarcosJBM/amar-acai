@@ -2,13 +2,11 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { DashboardPage } from './pages/dashboard';
-// Pages
 import { LoginPage } from './pages/login';
 import { PedidosPage } from './pages/pedidos';
 
-// Root redirect component
 function RootRedirect() {
-  const [isChecking, setIsChecking] = useState(true);
+  const [isChecking, setIsChecking] = useState<boolean>(true);
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
   useEffect(() => {

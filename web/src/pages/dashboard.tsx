@@ -29,7 +29,7 @@ import {
   getDadosGraficoSemanal,
   getMockPedidos,
   type Pedido,
-} from '@/lib/mock-data';
+} from '@/libs/mock-data';
 
 export function DashboardPage() {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
