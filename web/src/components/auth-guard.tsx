@@ -1,19 +1,19 @@
-import type React from 'react';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import type { ReactNode } from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
-export function AuthGuard({ children }: { children: React.ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+import { useAppSelector } from '@/store/hooks';
+
+export function AuthGuard({ children }: { children: ReactNode }) {
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    const auth = localStorage.getItem('isAuthenticated');
-    if (auth === 'true') {
-      setIsAuthenticated(true);
-    } else {
+    if (!isAuthenticated) {
       navigate('/login');
     }
-  }, [navigate]);
+  }, [isAuthenticated, navigate]);
 
   if (!isAuthenticated) {
     return (

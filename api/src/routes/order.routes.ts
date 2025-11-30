@@ -10,7 +10,6 @@ import {
 
 const router = Router();
 
-// All order routes require authentication
 router.use(authMiddleware);
 
 router.post('/', validate(createOrderSchema), orderController.create);

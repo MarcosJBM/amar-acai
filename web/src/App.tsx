@@ -1,25 +1,13 @@
-import { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
+import { Toaster } from './components/ui/toaster';
 import { DashboardPage } from './pages/dashboard';
 import { LoginPage } from './pages/login';
-import { PedidosPage } from './pages/pedidos';
+import { OrdersPage } from './pages/orders';
+import { useAppSelector } from './store/hooks';
 
 function RootRedirect() {
-  const [isChecking, setIsChecking] = useState<boolean>(true);
-  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-
-  useEffect(() => {
-    setIsChecking(false);
-  }, []);
-
-  if (isChecking) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-purple-600"></div>
-      </div>
-    );
-  }
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
 
   return <Navigate to={isAuthenticated ? '/dashboard' : '/login'} replace />;
 }
@@ -31,8 +19,10 @@ export function App() {
         <Route path="/" element={<RootRedirect />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/pedidos" element={<PedidosPage />} />
+        <Route path="/orders" element={<OrdersPage />} />
       </Routes>
+
+      <Toaster />
     </BrowserRouter>
   );
 }

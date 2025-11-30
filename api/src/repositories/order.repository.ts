@@ -22,7 +22,6 @@ export class OrderRepository {
     userId: string,
     data: Prisma.OrderUpdateInput,
   ): Promise<Order> {
-    // First check if order exists and belongs to user
     const order = await prisma.order.findUnique({
       where: { id },
     });
@@ -45,7 +44,6 @@ export class OrderRepository {
   }
 
   async deleteOrder(id: string, userId: string): Promise<Order> {
-    // First check if order exists and belongs to user
     const order = await prisma.order.findUnique({
       where: { id },
     });

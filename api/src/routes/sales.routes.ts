@@ -5,7 +5,6 @@ import { authMiddleware } from '@/middlewares/auth.middleware';
 
 const router = Router();
 
-// All sales routes require authentication
 router.use(authMiddleware);
 
 router.get('/summary', salesController.getSummary);
