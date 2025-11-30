@@ -15,13 +15,12 @@ export class SalesRepository {
       },
     });
 
-    return result._sum.amount?.toNumber() || 0;
+    console.log(result._sum.amount);
+
+    return (result._sum.amount?.toNumber() || 0) as number;
   }
 
-  async getOrdersByDay(
-    userId: string,
-    days: number,
-  ): Promise<Array<{ date: Date; total: number }>> {
+  async getOrdersByDay(userId: string, days: number) {
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - days + 1);
     startDate.setHours(0, 0, 0, 0);
@@ -39,7 +38,6 @@ export class SalesRepository {
       },
     });
 
-    // Group by day
     const groupedByDay = new Map<string, number>();
 
     for (let i = 0; i < days; i++) {
@@ -61,10 +59,7 @@ export class SalesRepository {
     }));
   }
 
-  async getOrdersByWeek(
-    userId: string,
-    weeks: number,
-  ): Promise<Array<{ weekStart: Date; total: number }>> {
+  async getOrdersByWeek(userId: string, weeks: number) {
     const now = new Date();
     const startDate = new Date(now);
     startDate.setDate(now.getDate() - weeks * 7);
@@ -83,14 +78,11 @@ export class SalesRepository {
       },
     });
 
-    // Group by week
     const groupedByWeek = new Map<string, number>();
 
-    // Initialize weeks
     for (let i = 0; i < weeks; i++) {
       const weekStart = new Date(now);
       weekStart.setDate(now.getDate() - (weeks - i) * 7);
-      // Get Sunday of that week
       weekStart.setDate(weekStart.getDate() - weekStart.getDay());
       weekStart.setHours(0, 0, 0, 0);
       const weekKey = weekStart.toISOString().split('T')[0];
@@ -116,10 +108,7 @@ export class SalesRepository {
     }));
   }
 
-  async getOrdersByMonth(
-    userId: string,
-    months: number,
-  ): Promise<Array<{ monthStart: Date; total: number }>> {
+  async getOrdersByMonth(userId: string, months: number) {
     const now = new Date();
     const startDate = new Date(now);
     startDate.setMonth(now.getMonth() - months + 1);
@@ -139,10 +128,8 @@ export class SalesRepository {
       },
     });
 
-    // Group by month
     const groupedByMonth = new Map<string, number>();
 
-    // Initialize months
     for (let i = 0; i < months; i++) {
       const monthStart = new Date(now);
       monthStart.setMonth(now.getMonth() - (months - i - 1));

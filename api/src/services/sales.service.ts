@@ -33,21 +33,18 @@ export class SalesService {
   async getSummary(userId: string): Promise<SalesSummary> {
     const now = new Date();
 
-    // Daily sales: from start of today to now
     const dailySales = await salesRepository.getOrdersInDateRange(
       userId,
       startOfDay(now),
       now,
     );
 
-    // Weekly sales: from start of week (Sunday) to now
     const weeklySales = await salesRepository.getOrdersInDateRange(
       userId,
       startOfWeek(now),
       now,
     );
 
-    // Monthly sales: from start of month to now
     const monthlySales = await salesRepository.getOrdersInDateRange(
       userId,
       startOfMonth(now),
@@ -62,26 +59,23 @@ export class SalesService {
   }
 
   async getCharts(userId: string): Promise<SalesCharts> {
-    // Daily chart: Last 7 days
     const dailyData = await salesRepository.getOrdersByDay(userId, 7);
     const daily = dailyData.map(d => ({
-      day: format(d.date, 'EEE').toLowerCase(), // "mon", "tue", "wed", ...
+      day: format(d.date, 'EEE').toLowerCase(),
       sales: d.total,
     }));
 
-    // Weekly chart: Last 4 weeks
     const weeklyData = await salesRepository.getOrdersByWeek(userId, 4);
     const weekly = weeklyData
       .map((w, i) => ({
         week: `Week ${i + 1}`,
         sales: w.total,
       }))
-      .reverse(); // Most recent week should be last
+      .reverse();
 
-    // Monthly chart: Last 6 months
     const monthlyData = await salesRepository.getOrdersByMonth(userId, 6);
     const monthly = monthlyData.map(m => ({
-      month: format(m.monthStart, 'MMM').toLowerCase(), // "jan", "feb", ...
+      month: format(m.monthStart, 'MMM').toLowerCase(),
       sales: m.total,
     }));
 

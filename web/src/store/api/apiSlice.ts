@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import type { RootState } from '../index';
 
+// TODO: move this to a constants folder
 const API_URL = 'http://localhost:8080';
 
 export const apiSlice = createApi({
