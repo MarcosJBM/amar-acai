@@ -1,14 +1,14 @@
 'use client';
 
 import * as LabelPrimitive from '@radix-ui/react-label';
-import * as React from 'react';
+import type { ComponentProps } from 'react';
 
 import { cn } from '@/libs/utils';
 
-function Label({
+export function Label({
   className,
   ...props
-}: React.ComponentProps<typeof LabelPrimitive.Root>) {
+}: ComponentProps<typeof LabelPrimitive.Root>) {
   return (
     <LabelPrimitive.Root
       data-slot="label"
@@ -20,5 +20,3 @@ function Label({
     />
   );
 }
-
-export { Label };
