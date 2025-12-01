@@ -2,11 +2,11 @@
   "name": "api",
   "version": "1.0.0",
   "description": "API para o projeto Amar Açaí",
-  "main": "index.js",
+  "main": "server.cjs",
   "type": "module",
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
-    "start": "node build/server.js",
+    "start": "node --watch build/server.cjs",
     "build": "tsup src --out-dir build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -24,6 +24,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "7.0.1",
     "@prisma/client": "7.0.1",
+    "@prisma/client-runtime-utils": "7.0.1",
     "bcrypt": "6.0.0",
     "cors": "2.8.5",
     "date-fns": "4.1.0",
