@@ -1,3 +1,3 @@
-# amar-acai
+# Amar Acai Dashboard - Projeto de extensão de Programação Web
 
-Monolito para o projeto Amar Acai Dashboard - Projeto de extensão da matéria de programação web
+https://amar-acai-web.onrender.com/
